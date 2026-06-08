@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Zahid Hossain Sajid — Cybersecurity Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#080b11;
+    --bg-2:#0c111a;
+    --panel:#0f1521;
+    --panel-2:#121a28;
+    --line:#1d2738;
+    --line-2:#27344a;
+    --txt:#dce3ee;
+    --txt-dim:#8a98ad;
+    --txt-faint:#5d6b80;
+    --accent:#34e2c4;       /* electric teal */
+    --accent-2:#39a0ff;     /* signal blue */
+    --warn:#f2b75c;
+    --display:'Sora',sans-serif;
+    --body:'IBM Plex Sans',sans-serif;
+    --mono:'JetBrains Mono',monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--txt);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* atmospheric background */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:-2;
+    background:
+      radial-gradient(900px 500px at 78% -10%, rgba(52,226,196,.10), transparent 60%),
+      radial-gradient(700px 500px at -5% 30%, rgba(57,160,255,.08), transparent 60%),
+      var(--bg);
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+    background-image:
+      linear-gradient(var(--line) 1px,transparent 1px),
+      linear-gradient(90deg,var(--line) 1px,transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 75%);
+    mask-image:radial-gradient(circle at 50% 30%,#000 0%,transparent 75%);
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 28px}
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:rgba(8,11,17,.72);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:.92rem;letter-spacing:.5px;color:var(--txt)}
+  .brand .b{color:var(--accent)}
+  .nav-links{display:flex;gap:26px;align-items:center}
+  .nav-links a{
+    font-family:var(--mono);font-size:.74rem;letter-spacing:.6px;text-transform:uppercase;
+    color:var(--txt-dim);text-decoration:none;transition:color .2s;position:relative;
+  }
+  .nav-links a:hover{color:var(--accent)}
+  .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:1px;width:0;background:var(--accent);transition:width .25s}
+  .nav-links a:hover::after{width:100%}
+  .dl{
+    font-family:var(--mono);font-size:.74rem;letter-spacing:.5px;
+    border:1px solid var(--accent);color:var(--accent);
+    padding:8px 14px;border-radius:6px;cursor:pointer;background:transparent;
+    transition:all .2s;text-transform:uppercase;
+  }
+  .dl:hover{background:var(--accent);color:#04140f;box-shadow:0 0 24px rgba(52,226,196,.35)}
+  @media(max-width:760px){.nav-links a{display:none}}
+
+  /* HERO */
+  header{padding:78px 0 56px;position:relative}
+  .term{
+    font-family:var(--mono);font-size:.82rem;color:var(--accent);
+    margin-bottom:22px;display:inline-flex;align-items:center;gap:8px;
+    border:1px solid var(--line-2);background:var(--panel);
+    padding:7px 14px;border-radius:999px;
+  }
+  .term .dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+  .cursor{display:inline-block;width:9px;height:1.05em;background:var(--accent);margin-left:3px;vertical-align:-2px;animation:blink 1.05s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  h1{
+    font-family:var(--display);font-weight:800;
+    font-size:clamp(2.6rem,7vw,5.1rem);line-height:1.02;letter-spacing:-1.5px;
+    color:#fff;margin-bottom:18px;
+  }
+  h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .role{font-family:var(--mono);font-size:clamp(.82rem,1.8vw,1rem);color:var(--txt-dim);letter-spacing:.5px;margin-bottom:26px}
+  .role b{color:var(--accent)}
+  .intro{max-width:680px;color:var(--txt-dim);font-size:1.04rem;margin-bottom:30px}
+  .chips{display:flex;flex-wrap:wrap;gap:12px}
+  .chip{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-size:.78rem;color:var(--txt);text-decoration:none;
+    border:1px solid var(--line-2);background:var(--panel);
+    padding:9px 14px;border-radius:8px;transition:all .2s;
+  }
+  .chip:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .chip svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8}
+
+  /* STATS */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:44px;
+  }
+  .stat{background:var(--panel);padding:24px 18px;text-align:center}
+  .stat .n{font-family:var(--display);font-weight:800;font-size:2rem;color:#fff}
+  .stat .n span{color:var(--accent)}
+  .stat .l{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.8px;color:var(--txt-faint);margin-top:4px}
+  @media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* SECTION */
+  section{padding:62px 0;border-top:1px solid var(--line)}
+  .kicker{font-family:var(--mono);font-size:.74rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  .kicker::before{content:"// "}
+  .s-title{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,3.5vw,2.3rem);color:#fff;letter-spacing:-.5px;margin-bottom:34px}
+
+  /* COMPETENCIES */
+  .grid-comp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.grid-comp{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.grid-comp{grid-template-columns:1fr}}
+  .comp{
+    border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:18px;
+    transition:all .25s;position:relative;overflow:hidden;
+  }
+  .comp::before{content:"";position:absolute;left:0;top:0;height:100%;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform .25s}
+  .comp:hover{border-color:var(--line-2);background:var(--panel-2);transform:translateY(-3px)}
+  .comp:hover::before{transform:scaleY(1)}
+  .comp .idx{font-family:var(--mono);font-size:.7rem;color:var(--txt-faint)}
+  .comp .t{font-weight:600;color:var(--txt);margin-top:6px;font-size:.98rem}
+
+  /* TIMELINE */
+  .tl{position:relative;padding-left:30px}
+  .tl::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:linear-gradient(var(--accent),var(--line) 70%)}
+  .job{position:relative;margin-bottom:38px}
+  .job:last-child{margin-bottom:0}
+  .job::before{content:"";position:absolute;left:-30px;top:6px;width:13px;height:13px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);box-shadow:0 0 0 4px rgba(52,226,196,.12)}
+  .job-head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;align-items:baseline}
+  .job-role{font-family:var(--display);font-weight:600;font-size:1.16rem;color:#fff}
+  .job-date{font-family:var(--mono);font-size:.76rem;color:var(--txt-faint);white-space:nowrap}
+  .job-co{font-family:var(--mono);font-size:.85rem;color:var(--accent-2);margin:2px 0 12px}
+  .job-co .loc{color:var(--txt-faint)}
+  .job ul{list-style:none}
+  .job li{position:relative;padding-left:20px;margin-bottom:8px;color:var(--txt-dim);font-size:.96rem}
+  .job li::before{content:"▸";position:absolute;left:0;color:var(--accent);font-size:.8rem;top:1px}
+
+  /* PROJECTS */
+  .proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  @media(max-width:760px){.proj-grid{grid-template-columns:1fr}}
+  .proj{
+    border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),var(--bg-2));
+    border-radius:12px;padding:22px;transition:all .25s;
+  }
+  .proj:hover{border-color:var(--accent);transform:translateY(-4px);box-shadow:0 18px 40px -20px rgba(52,226,196,.4)}
+  .proj .tag{font-family:var(--mono);font-size:.68rem;color:var(--accent);letter-spacing:.6px;text-transform:uppercase}
+  .proj h3{font-family:var(--display);font-weight:600;font-size:1.08rem;color:#fff;margin:8px 0 8px}
+  .proj p{color:var(--txt-dim);font-size:.92rem}
+
+  /* SKILLS */
+  .skill-block{margin-bottom:20px}
+  .skill-block .label{font-family:var(--mono);font-size:.78rem;color:var(--txt-faint);text-transform:uppercase;letter-spacing:.6px;margin-bottom:10px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px}
+  .tag-pill{
+    font-family:var(--mono);font-size:.78rem;color:var(--txt);
+    border:1px solid var(--line-2);background:var(--panel);
+    padding:6px 11px;border-radius:6px;transition:all .18s;
+  }
+  .tag-pill:hover{border-color:var(--accent);color:var(--accent);background:var(--panel-2)}
+
+  /* CERTS */
+  .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:640px){.cert-grid{grid-template-columns:1fr}}
+  .cert{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);background:var(--panel);border-radius:9px;padding:15px 16px}
+  .cert .mk{color:var(--accent);font-family:var(--mono);font-size:.8rem;margin-top:2px}
+  .cert .ct{font-weight:600;color:var(--txt);font-size:.94rem}
+  .cert .cs{color:var(--txt-faint);font-size:.8rem;font-family:var(--mono)}
+  .pub{margin-top:16px;border-left:2px solid var(--accent);padding:12px 18px;background:var(--panel);border-radius:0 8px 8px 0}
+  .pub .pl{font-family:var(--mono);font-size:.7rem;color:var(--accent);text-transform:uppercase;letter-spacing:.6px}
+  .pub p{color:var(--txt-dim);font-size:.95rem;margin-top:4px}
+
+  /* TWO COL */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+  @media(max-width:760px){.two{grid-template-columns:1fr;gap:34px}}
+  .edu-item{margin-bottom:20px}
+  .edu-item .d{font-family:var(--display);font-weight:600;color:#fff;font-size:1.02rem}
+  .edu-item .m{font-family:var(--mono);font-size:.8rem;color:var(--accent-2);margin-top:2px}
+  .edu-item .y{font-family:var(--mono);font-size:.76rem;color:var(--txt-faint);margin-top:2px}
+  .award{display:flex;gap:11px;margin-bottom:13px;color:var(--txt-dim);font-size:.94rem}
+  .award .star{color:var(--warn);flex-shrink:0}
+
+  /* REFERENCES */
+  .ref-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.ref-grid{grid-template-columns:1fr}}
+  .ref{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:20px}
+  .ref .rn{font-family:var(--display);font-weight:600;color:#fff;font-size:1.04rem}
+  .ref .rt{color:var(--txt-dim);font-size:.88rem;margin:5px 0 9px}
+  .ref .rc{font-family:var(--mono);font-size:.78rem;color:var(--txt-faint);line-height:1.8}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:60px 0;text-align:center}
+  footer .ft-k{font-family:var(--mono);color:var(--accent);font-size:.78rem;letter-spacing:1px;text-transform:uppercase}
+  footer h2{font-family:var(--display);font-weight:800;font-size:clamp(1.8rem,5vw,3rem);color:#fff;margin:14px 0 26px;letter-spacing:-1px}
+  .ft-mail{
+    font-family:var(--mono);font-size:1.05rem;color:var(--accent);text-decoration:none;
+    border-bottom:1px solid transparent;transition:border .2s;
+  }
+  .ft-mail:hover{border-color:var(--accent)}
+  .ft-sub{font-family:var(--mono);font-size:.74rem;color:var(--txt-faint);margin-top:40px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  .stagger>*{opacity:0;transform:translateY(16px);animation:rise .6s ease forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  @media print{
+    body::before,body::after,nav{display:none}
+    body{background:#fff;color:#111}
+    section,header{padding:18px 0;border-color:#ddd}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="brand">ZHS<span class="b">_</span>SEC</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certs">Certs</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <button class="dl" onclick="window.print()">↓ Resume</button>
+  </div>
+</nav>
+
+<header id="about">
+  <div class="wrap">
+    <div class="term stagger" style="animation-delay:.05s"><span class="dot"></span>whoami — penetration_tester · soc_engineer<span class="cursor"></span></div>
+    <h1 class="stagger" style="animation-delay:.15s">Md Zahid<br>Hossain <span class="grad">Sajid</span></h1>
+    <div class="role stagger" style="animation-delay:.25s">Penetration Tester &nbsp;·&nbsp; <b>Senior Cybersecurity Engineer</b> &nbsp;·&nbsp; SOC / SIEM Engineer &nbsp;·&nbsp; Security Consultant</div>
+    <p class="intro stagger" style="animation-delay:.35s">
+      4+ years securing national-scale government infrastructure, multinational banking systems, and complex enterprise environments — across the full VAPT lifecycle and the defensive SOC stack. Published researcher and active CTF competitor, based in Dhaka and open to global relocation.
+    </p>
+    <div class="chips stagger" style="animation-delay:.45s">
+      <a class="chip" href="mailto:zahidhossainsajid@gmail.com">
+        <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        zahidhossainsajid@gmail.com
+      </a>
+      <a class="chip" href="tel:+8801772887438">
+        <svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a14 14 0 006 6l2-3 5 2v4a2 2 0 01-2 2A17 17 0 013 6a2 2 0 012-2z"/></svg>
+        +880 1772-887438
+      </a>
+      <a class="chip" href="https://www.linkedin.com/in/md-zahid-hossain-sajid-85bbab185/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 10v7M7 7v.01M11 17v-4a2 2 0 014 0v4"/></svg>
+        LinkedIn
+      </a>
+      <a class="chip" href="https://www.credly.com/users/md-zahid-hossain-hossain-sajid" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5"/><path d="M9 13l-2 8 5-3 5 3-2-8"/></svg>
+        Credly
+      </a>
+    </div>
+
+    <div class="stats reveal">
+      <div class="stat"><div class="n">4<span>+</span></div><div class="l">Years Experience</div></div>
+      <div class="stat"><div class="n">100<span>+</span></div><div class="l">Vulns Reported</div></div>
+      <div class="stat"><div class="n">10<span>+</span></div><div class="l">CTF Competitions</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Banks Secured</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="competencies">
+  <div class="wrap">
+    <div class="kicker reveal">core competencies</div>
+    <h2 class="s-title reveal">What I do</h2>
+    <div class="grid-comp">
+      <div class="comp reveal"><div class="idx">01</div><div class="t">Penetration Testing (VAPT)</div></div>
+      <div class="comp reveal"><div class="idx">02</div><div class="t">Web Application Security</div></div>
+      <div class="comp reveal"><div class="idx">03</div><div class="t">API Security Testing</div></div>
+      <div class="comp reveal"><div class="idx">04</div><div class="t">Mobile Security (Android/iOS)</div></div>
+      <div class="comp reveal"><div class="idx">05</div><div class="t">Network & Infrastructure PT</div></div>
+      <div class="comp reveal"><div class="idx">06</div><div class="t">Cloud Security Assessment</div></div>
+      <div class="comp reveal"><div class="idx">07</div><div class="t">SIEM Engineering</div></div>
+      <div class="comp reveal"><div class="idx">08</div><div class="t">SOAR & Automation</div></div>
+      <div class="comp reveal"><div class="idx">09</div><div class="t">SOC Deployment & Operations</div></div>
+      <div class="comp reveal"><div class="idx">10</div><div class="t">Threat Hunting & IR</div></div>
+      <div class="comp reveal"><div class="idx">11</div><div class="t">Vulnerability Management</div></div>
+      <div class="comp reveal"><div class="idx">12</div><div class="t">Digital Forensics & Malware</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="kicker reveal">career.log</div>
+    <h2 class="s-title reveal">Professional Experience</h2>
+    <div class="tl">
+      <div class="job reveal">
+        <div class="job-head"><div class="job-role">Senior Cybersecurity Engineer</div><div class="job-date">Sept 2025 — Present</div></div>
+        <div class="job-co">Synesis IT PLC <span class="loc">· Kawran Bazar, Dhaka</span></div>
+        <ul>
+          <li>Lead internal & external full-lifecycle VAPT across web, mobile (Android/iOS), REST/GraphQL APIs, cloud, and enterprise networks using advanced manual testing and automated tooling.</li>
+          <li>Design and execute realistic adversary simulations — privilege escalation, lateral movement, account takeover, multi-stage data exfiltration — to quantify real-world risk.</li>
+          <li>Drive OWASP-aligned assessments (Web, Mobile, API Top 10): SSL pinning bypass, IDOR chains, JWT manipulation, OAuth flaws, business-logic vulns; deliver validated PoCs with CVSS ratings.</li>
+          <li>Partner with SOC & Blue Teams to validate SIEM/EDR detection coverage and harden IR playbooks, improving MTTD by an estimated 30%.</li>
+        </ul>
+      </div>
+      <div class="job reveal">
+        <div class="job-head"><div class="job-role">Cybersecurity Engineer</div><div class="job-date">Jul 2024 — Aug 2025</div></div>
+        <div class="job-co">Smart Technologies (BD) Ltd <span class="loc">· Agargaon, Dhaka</span></div>
+        <ul>
+          <li>Architected and deployed an enterprise SOC with FortiSIEM & FortiSOAR — log sources, correlation rules, automated playbooks — cutting alert triage time by roughly 40%.</li>
+          <li>Led R&D deployment of IBM QRadar and IBM Security SOAR; built use-case libraries for insider threat, lateral movement, and ransomware patterns.</li>
+          <li>Performed MITRE ATT&CK-mapped threat hunting across endpoint, network, and cloud telemetry; contained 3 high-severity incidents pre-escalation.</li>
+          <li>Operationalized Rapid7 InsightVM, Tenable SecurityCenter, Metasploit Pro, and Burp Suite Pro across multi-tenant environments.</li>
+        </ul>
+      </div>
+      <div class="job reveal">
+        <div class="job-head"><div class="job-role">Cybersecurity Engineer</div><div class="job-date">Jul 2023 — Jul 2024</div></div>
+        <div class="job-co">BRACNet Limited <span class="loc">· Mohakhali, Dhaka</span></div>
+        <ul>
+          <li>Executed end-to-end VAPT of BRACNet's Tier-3 Data Center and core network, surfacing 20+ vulnerabilities including critical misconfigurations and privilege-escalation paths.</li>
+          <li>Designed a full open-source SOC stack (Wazuh, Suricata, pfSense, Grafana, TheHive, Shuffle, Cortex, MISP, Keycloak) delivering SIEM/SOAR/IDS at near-zero licensing cost.</li>
+          <li>Deployed SentinelOne and Trend Micro EDR fleet-wide; delivered hands-on training to 50+ stakeholders.</li>
+        </ul>
+      </div>
+      <div class="job reveal">
+        <div class="job-head"><div class="job-role">Penetration Tester</div><div class="job-date">May 2022 — Jun 2023</div></div>
+        <div class="job-co">Cyber Bangla <span class="loc">· Remote</span></div>
+        <ul>
+          <li>Conducted comprehensive VAPT across web, REST APIs, mobile, on-prem infrastructure, and cloud — reporting 100+ vulnerabilities with risk-ranked remediation.</li>
+          <li>Produced professional reports with PoC evidence, CVSS scoring, and executive summaries for fintech, e-commerce, and government clients.</li>
+        </ul>
+      </div>
+      <div class="job reveal">
+        <div class="job-head"><div class="job-role">Cybersecurity Researcher</div><div class="job-date">Jan 2019 — Jun 2022</div></div>
+        <div class="job-co">ICE Innovation Lab, Islamic University <span class="loc">· Kushtia</span></div>
+        <ul>
+          <li>Applied R&D in web exploitation, malware analysis, digital forensics, cryptography, and network security; contributed to peer-reviewed publications.</li>
+          <li>Represented the university in 10+ national & international CTFs incl. DefCamp CTF (Romania), National Cyber Drills, and BUET CSE Fest.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="kicker reveal">engagements</div>
+    <h2 class="s-title reveal">Selected Projects</h2>
+    <div class="proj-grid">
+      <div class="proj reveal"><div class="tag">government</div><h3>National Infrastructure VAPT</h3><p>Security assessments for national-scale platforms — NEIR, Income Tax eReturn, eTIN, Election Commission Chatbot, National Job Portal, and the Convay meeting app — with critical findings delivered to government stakeholders.</p></div>
+      <div class="proj reveal"><div class="tag">banking</div><h3>Enterprise Banking Deployments</h3><p>Deployed Tenable.io at Shahjalal Islami Bank, Tenable.sc at Al-Arafah Islami Bank, and Rapid7 InsightVM + Metasploit Pro at Global Islami Bank — vulnerability programs for three financial institutions.</p></div>
+      <div class="proj reveal"><div class="tag">soc / soar</div><h3>FortiSOAR / FortiSIEM SOC</h3><p>Full-stack Fortinet SOC (FortiSIEM, FortiSOAR, FortiGuard) with 25+ custom correlation rules and automated IR playbooks; operated as L3 SOC Analyst for advanced threat detection.</p></div>
+      <div class="proj reveal"><div class="tag">open source</div><h3>Open-Source SOC Architecture</h3><p>Designed and operationalized a complete open-source SOC (Wazuh, Suricata, pfSense, Grafana, TheHive, Shuffle, Cortex, MISP, Keycloak) for SIEM, SOAR, IDS/IPS, and threat intel.</p></div>
+      <div class="proj reveal"><div class="tag">finance / gov</div><h3>IBAS++ Security Program</h3><p>Implemented Burp Suite Enterprise, Metasploit Pro, and Tenable.sc+ for the Integrated Budget and Accounting System; delivered a 9-day training program to 30+ personnel.</p></div>
+      <div class="proj reveal"><div class="tag">research</div><h3>DDoS Detection (SDN)</h3><p>Developed and validated a Software-Defined Networking framework for real-time DDoS detection and mitigation — published at ICT-CEEL 2023 International Conference.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="kicker reveal">toolstack</div>
+    <h2 class="s-title reveal">Technical Skills</h2>
+    <div class="reveal">
+      <div class="skill-block"><div class="label">SIEM & SOAR</div><div class="tags">
+        <span class="tag-pill">FortiSIEM</span><span class="tag-pill">FortiSOAR</span><span class="tag-pill">IBM QRadar</span><span class="tag-pill">IBM Security SOAR</span><span class="tag-pill">Splunk</span><span class="tag-pill">Wazuh</span><span class="tag-pill">Security Onion</span>
+      </div></div>
+      <div class="skill-block"><div class="label">Vulnerability Management</div><div class="tags">
+        <span class="tag-pill">Tenable.io</span><span class="tag-pill">Tenable.sc</span><span class="tag-pill">Rapid7 InsightVM</span><span class="tag-pill">Acunetix</span><span class="tag-pill">Nessus</span><span class="tag-pill">OpenVAS</span>
+      </div></div>
+      <div class="skill-block"><div class="label">Penetration Testing</div><div class="tags">
+        <span class="tag-pill">Metasploit Pro</span><span class="tag-pill">Burp Suite Pro</span><span class="tag-pill">SQLmap</span><span class="tag-pill">Hydra</span><span class="tag-pill">Responder</span><span class="tag-pill">CrackMapExec</span><span class="tag-pill">Netcat</span>
+      </div></div>
+      <div class="skill-block"><div class="label">Web & API Security</div><div class="tags">
+        <span class="tag-pill">OWASP ZAP</span><span class="tag-pill">Postman</span><span class="tag-pill">SoapUI</span><span class="tag-pill">Nikto</span><span class="tag-pill">Gobuster</span><span class="tag-pill">Dirsearch</span><span class="tag-pill">ffuf</span><span class="tag-pill">WPScan</span>
+      </div></div>
+      <div class="skill-block"><div class="label">Mobile Security</div><div class="tags">
+        <span class="tag-pill">MobSF</span><span class="tag-pill">Frida</span><span class="tag-pill">Objection</span><span class="tag-pill">APKTool</span><span class="tag-pill">JADX</span><span class="tag-pill">Drozer</span><span class="tag-pill">Ghidra</span><span class="tag-pill">IDA Pro</span>
+      </div></div>
+      <div class="skill-block"><div class="label">Network · Forensics · EDR</div><div class="tags">
+        <span class="tag-pill">Nmap</span><span class="tag-pill">Wireshark</span><span class="tag-pill">tcpdump</span><span class="tag-pill">Masscan</span><span class="tag-pill">Autopsy</span><span class="tag-pill">Volatility</span><span class="tag-pill">FTK Imager</span><span class="tag-pill">SentinelOne</span><span class="tag-pill">Trend Micro</span>
+      </div></div>
+      <div class="skill-block"><div class="label">Scripting & OS</div><div class="tags">
+        <span class="tag-pill">Python</span><span class="tag-pill">Bash</span><span class="tag-pill">C/C++</span><span class="tag-pill">Kali Linux</span><span class="tag-pill">Parrot OS</span><span class="tag-pill">Ubuntu</span><span class="tag-pill">RHEL / CentOS</span><span class="tag-pill">Windows Server</span>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<section id="certs">
+  <div class="wrap">
+    <div class="kicker reveal">credentials</div>
+    <h2 class="s-title reveal">Certifications & Publication</h2>
+    <div class="cert-grid">
+      <div class="cert reveal"><div class="mk">▣</div><div><div class="ct">Certified Ethical Hacker (CEH) — Practical</div><div class="cs">EC-Council</div></div></div>
+      <div class="cert reveal"><div class="mk">▣</div><div><div class="ct">Certified Network Security Practitioner (CNSP)</div><div class="cs">The SecOps Group</div></div></div>
+      <div class="cert reveal"><div class="mk">▣</div><div><div class="ct">API Penetration Testing & API Security Fundamentals</div><div class="cs">APIsec University</div></div></div>
+      <div class="cert reveal"><div class="mk">▣</div><div><div class="ct">IBM QRadar SIEM — Technical Sales Intermediate</div><div class="cs">IBM</div></div></div>
+      <div class="cert reveal"><div class="mk">▣</div><div><div class="ct">Cyber Security & Ethical Hacking Specialization</div><div class="cs">Arena Web Security</div></div></div>
+      <div class="cert reveal"><div class="mk">▣</div><div><div class="ct">PenTest+ pathway · Networking · Python · Intro to Cybersecurity</div><div class="cs">TryHackMe · Google · Michigan · Cisco</div></div></div>
+    </div>
+    <div class="pub reveal">
+      <div class="pl">Publication</div>
+      <p>"Cybersecurity Based on Honeypot System" — ICT-CEEL 2023 International Conference on Technologies for Computer, Electrical, Electronics and Communication.</p>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <div class="two">
+      <div>
+        <div class="kicker reveal">education</div>
+        <h2 class="s-title reveal" style="margin-bottom:24px">Education</h2>
+        <div class="edu-item reveal"><div class="d">B.Sc. in Engineering (ICT)</div><div class="m">Islamic University, Bangladesh</div><div class="y">2018 – 2023 · CGPA 3.44 / 4.00</div></div>
+        <div class="edu-item reveal"><div class="d">Higher Secondary Certificate (HSC)</div><div class="m">Biharilal Shikder Govt. College</div><div class="y">2014 – 2016 · GPA 5.00 / 5.00</div></div>
+      </div>
+      <div>
+        <div class="kicker reveal">recognition</div>
+        <h2 class="s-title reveal" style="margin-bottom:24px">Awards</h2>
+        <div class="reveal">
+          <div class="award"><span class="star">★</span><span>2nd Runners-Up — Inter-University Cyber Drill 2022, BGD e-GOV CIRT</span></div>
+          <div class="award"><span class="star">★</span><span>Champion & Best Presenter — IEEE IU SB Idea Contest 2019</span></div>
+          <div class="award"><span class="star">★</span><span>Champion — Project Showcasing, Book & Digital Innovation Fair, IU</span></div>
+          <div class="award"><span class="star">★</span><span>International Qualifier — DefCamp CTF 2022, Romania</span></div>
+          <div class="award"><span class="star">★</span><span>Participant — National Cyber Drills 2021 & 2022, BGD e-GOV CIRT</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="references">
+  <div class="wrap">
+    <div class="kicker reveal">references</div>
+    <h2 class="s-title reveal">References</h2>
+    <div class="ref-grid">
+      <div class="ref reveal">
+        <div class="rn">Dr. Fida Hasan</div>
+        <div class="rt">Cybersecurity Academic & Researcher, University of New South Wales (UNSW), Australia</div>
+        <div class="rc">✉ k.fidahasan@gmail.com<br>☎ +61 422 262 477</div>
+      </div>
+      <div class="ref reveal">
+        <div class="rn">Md. Jahangir Alam, CISA, OSCP</div>
+        <div class="rt">MD & CEO, QA Pro Ltd · Director (CISA), ISACA Dhaka Chapter</div>
+        <div class="rc">✉ jahangir.cse@gmail.com<br>☎ +880 1715-685598</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="ft-k">// let's talk security</div>
+    <h2>Open to global opportunities</h2>
+    <a class="ft-mail" href="mailto:zahidhossainsajid@gmail.com">zahidhossainsajid@gmail.com</a>
+    <div class="ft-sub">Md Zahid Hossain Sajid · Dhaka, Bangladesh · Open to Relocation · © 2026</div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    el.style.transitionDelay = (Math.min(i%6,5)*0.06)+'s';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>
