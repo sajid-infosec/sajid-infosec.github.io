@@ -763,8 +763,8 @@
 
 <div class="toast" id="toast"></div>
 
-<!-- EmailJS SDK -->
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<!-- EmailJS SDK v4 (official CDN per emailjs.com/docs/sdk/installation) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
 'use strict';
 
@@ -905,7 +905,7 @@ const EMAILJS_PUBLIC_KEY  = 'bMk95cQHoDeN6sSqS';  // Account → API Keys
 const EMAILJS_SERVICE_ID  = 'service_hm7bq7r';    // Email Services
 const EMAILJS_TEMPLATE_ID = 'template_pq7ohl9';   // Email Templates
 
-if (window.emailjs) emailjs.init(EMAILJS_PUBLIC_KEY);
+if (window.emailjs) emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
 /* star rating */
 let rating = 0;
